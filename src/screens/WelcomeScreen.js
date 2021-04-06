@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 const WelcomeScreen = () => {
     return (
         <View>
-            <Text> Screen boilerplate </Text>
+            <Text> Welcome Screen boilerplate </Text>
         </View>
     )
 }

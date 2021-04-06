@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 const AuthScreen = () => {
     return (
         <View>
-            <Text> Screen boilerplate </Text>
+            <Text> Auth Screen boilerplate </Text>
         </View>
     )
 }

@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 const SettingsScreen = () => {
     return (
         <View>
-            <Text> Screen boilerplate </Text>
+            <Text> Settings Screen boilerplate </Text>
         </View>
     )
 }

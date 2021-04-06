@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 const ReviewScreen = () => {
     return (
         <View>
-            <Text> Screen boilerplate </Text>
+            <Text>Review Screen boilerplate </Text>
         </View>
     )
 }

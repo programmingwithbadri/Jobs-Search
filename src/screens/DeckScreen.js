@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 const DeckScreen = () => {
     return (
         <View>
-            <Text> Screen boilerplate </Text>
+            <Text> Deck Screen boilerplate </Text>
         </View>
     )
 }
