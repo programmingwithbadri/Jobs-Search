@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -32,7 +33,21 @@ const MainTabScreen = () => (
 
 const ReviewStackScreen = () => (
     <ReviewStack.Navigator>
-        <ReviewStack.Screen name="Review" component={ReviewScreen} />
+        <ReviewStack.Screen
+            name="Review"
+            component={ReviewScreen}
+            options={({ navigation }) => {
+                return {
+                    headerTitle: 'My Reviews',
+                    headerRight: () => (
+                        <Button
+                            onPress={() => navigation.navigate('Settings')}
+                            title="Settings"
+                        />
+                    ),
+                };
+            }}
+        />
         <ReviewStack.Screen name="Settings" component={SettingsScreen} />
     </ReviewStack.Navigator>
 );
