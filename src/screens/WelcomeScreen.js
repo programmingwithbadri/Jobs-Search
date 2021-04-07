@@ -11,10 +11,20 @@ const SLIDE_DATA = [
     {
         text: 'Set your location, then swipe away'
     }
-]
-const WelcomeScreen = () => {
+];
+
+const onSlidesComplete = () => {
+
+}
+
+const WelcomeScreen = ({ navigation }) => {
     return (
-        <Slides data={SLIDE_DATA} />
+        <Slides
+            data={SLIDE_DATA}
+            onComplete={() => {
+                navigation.navigate('Auth')
+            }}
+        />
     )
 }
 
