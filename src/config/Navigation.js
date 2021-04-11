@@ -16,7 +16,7 @@ const InitialTab = createBottomTabNavigator();
 const MainTab = createBottomTabNavigator();
 
 const InitialTabScreen = () => (
-    <InitialTab.Navigator>
+    <InitialTab.Navigator screenOptions={{ tabBarVisible: false }}>
         <InitialTab.Screen name="Welcome" component={WelcomeScreen} />
         <InitialTab.Screen name="Auth" component={AuthScreen} />
         <InitialTab.Screen name="Home" component={MainTabScreen} />
