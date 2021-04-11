@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Text, View } from 'react-native'
 import { facebookLogin } from '../actions';
 
-const AuthScreen = () => {
+const AuthScreen = ({ navigation }) => {
     const dispatch = useDispatch();
+    const token = useSelector((state) => state.auth.token)
     useEffect(() => {
-        dispatch(facebookLogin())
-    }, [dispatch])
+        if (token) {
+            navigation.navigate('Home')
+        } else {
+            dispatch(facebookLogin())
+        }
+    }, [dispatch, token])
+
     return (
-        <View>
-            <Text> Auth Screen boilerplate </Text>
-        </View>
+        <View />
     )
 }
 

@@ -30,9 +30,18 @@ const doFacebookLogin = async (dispatch) => {
 
         if (type === 'success') {
             // Get the user's name using Facebook's Graph API
+            await AsyncStorage.setItem('facebook_token', token);
+            dispatch({
+                type: FACEBOOK_LOGIN_SUCCESS,
+                payload: token
+            });
 
         } else {
             // type === 'cancel'
+            await AsyncStorage.removeItem('facebook_token');
+            dispatch({
+                type: FACEBOOK_LOGIN_FAIL
+            })
         }
     } catch ({ message }) {
         alert(`Facebook Login Error: ${message}`);
