@@ -1,18 +1,21 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Facebook from 'expo-facebook';
 import { FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAIL } from '../types';
+import { navigate } from '../config/navigationRef';
 
 export const facebookLogin = () => async (dispatch) => {
     let token = await AsyncStorage.getItem('facebook_token');
     if (!token) {
         doFacebookLogin(dispatch);
     }
+    else {
+        dispatch({
+            type: FACEBOOK_LOGIN_SUCCESS,
+            payload: token
+        })
 
-    dispatch({
-        type: FACEBOOK_LOGIN_SUCCESS,
-        payload: token
-    })
-
+        navigate("Home");
+    }
 }
 
 const doFacebookLogin = async (dispatch) => {
@@ -36,9 +39,9 @@ const doFacebookLogin = async (dispatch) => {
                 payload: token
             });
 
+            navigate("Home");
         } else {
             // type === 'cancel'
-            await AsyncStorage.removeItem('facebook_token');
             dispatch({
                 type: FACEBOOK_LOGIN_FAIL
             })

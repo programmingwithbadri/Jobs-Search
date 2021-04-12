@@ -11,3 +11,7 @@ web-build/
 
 # macOS
 .DS_Store
+.idea/Job-Search.iml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml

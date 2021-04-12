@@ -3,7 +3,7 @@ import { Button } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import { navigationRef } from './navigationRef'
 import ReviewScreen from '../screens/ReviewScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import WelcomeScreen from '../screens/WelcomeScreen'
@@ -53,7 +53,7 @@ const ReviewStackScreen = () => (
 );
 
 export default () => (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
         <InitialTabScreen />
     </NavigationContainer>
 );
