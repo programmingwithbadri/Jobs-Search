@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { ActivityIndicator, View } from 'react-native';
 import MapView from 'react-native-maps'
 
@@ -16,10 +16,18 @@ const MapScreen = () => {
 
     const [mapLoaded, setMapLoaded] = useState(false);
 
+    const onRegionChangeComplete = useCallback((region) => {
+        setRegion(region);
+    });
+
     return (
         mapLoaded
             ? <View style={{ flex: 1 }}>
-                <MapView region={region} style={{ flex: 1 }} />
+                <MapView
+                    region={region}
+                    style={{ flex: 1 }}
+                    onRegionChangeComplete={onRegionChangeComplete}
+                />
             </View>
             : <View style={{ flex: 1, justifyContent: 'center' }}>
                 <ActivityIndicator size="large" color="#0000ff" />
