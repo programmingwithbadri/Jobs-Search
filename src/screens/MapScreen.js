@@ -1,10 +1,11 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native';
+import MapView from 'react-native-maps'
 
 const MapScreen = () => {
     return (
-        <View>
-            <Text> Map Screen boilerplate </Text>
+        <View style={{ flex: 1 }}>
+            <MapView style={{ flex: 1 }} />
         </View>
     )
 }
