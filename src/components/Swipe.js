@@ -7,37 +7,28 @@ import {
     LayoutAnimation,
     UIManager
 } from 'react-native';
-import useConstructor from '../hooks/useConstructor';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
 const SWIPE_OUT_DURATION = 250;
 
 const Swipe = ({ onSwipeLeft, onSwipeRight, data, renderCard, renderNoMoreCards }) => {
-    const [panResponder, setPanResponder] = useState();
+    const position = new Animated.ValueXY();
     const [index, setIndex] = useState(0);
-    const [position, setPosition] = useState(new Animated.ValueXY());
-
-    useConstructor(() => {
-        const gesturePosition = new Animated.ValueXY();
-        const panResponder = PanResponder.create({
-            onStartShouldSetPanResponder: () => true,
-            onPanResponderMove: (event, gesture) => {
-                gesturePosition.setValue({ x: gesture.dx, y: gesture.dy });
-            },
-            onPanResponderRelease: (event, gesture) => {
-                if (gesture.dx > SWIPE_THRESHOLD) {
-                    forceSwipe('right');
-                } else if (gesture.dx < -SWIPE_THRESHOLD) {
-                    forceSwipe('left');
-                } else {
-                    resetPosition();
-                }
+    const panResponder = PanResponder.create({
+        onStartShouldSetPanResponder: () => true,
+        onPanResponderMove: (event, gesture) => {
+            position.setValue({ x: gesture.dx, y: gesture.dy });
+        },
+        onPanResponderRelease: (event, gesture) => {
+            if (gesture.dx > SWIPE_THRESHOLD) {
+                forceSwipe('right');
+            } else if (gesture.dx < -SWIPE_THRESHOLD) {
+                forceSwipe('left');
+            } else {
+                resetPosition();
             }
-        });
-
-        setPosition(gesturePosition);
-        setPanResponder(panResponder);
+        }
     })
 
     useEffect(() => {
@@ -49,13 +40,13 @@ const Swipe = ({ onSwipeLeft, onSwipeRight, data, renderCard, renderNoMoreCards 
         const x = direction === 'right' ? SCREEN_WIDTH : -SCREEN_WIDTH;
         Animated.timing(position, {
             toValue: { x, y: 0 },
+            useNativeDriver: false,
             duration: SWIPE_OUT_DURATION
         }).start(() => onSwipeComplete(direction));
     }
 
     const onSwipeComplete = (direction) => {
         const item = data[index];
-
         direction === 'right' ? onSwipeRight(item) : onSwipeLeft(item);
         position.setValue({ x: 0, y: 0 });
         setIndex(index + 1)
@@ -63,7 +54,8 @@ const Swipe = ({ onSwipeLeft, onSwipeRight, data, renderCard, renderNoMoreCards 
 
     const resetPosition = () => {
         Animated.spring(position, {
-            toValue: { x: 0, y: 0 }
+            toValue: { x: 0, y: 0 },
+            useNativeDriver: false
         }).start();
     }
 
@@ -90,7 +82,7 @@ const Swipe = ({ onSwipeLeft, onSwipeRight, data, renderCard, renderNoMoreCards 
                 return (
                     <Animated.View
                         key={item.id}
-                        style={[getCardStyle, styles.cardStyle, { zIndex: 99 }]}
+                        style={[getCardStyle(), styles.cardStyle, { zIndex: 99 }]}
                         {...panResponder.panHandlers}
                     >
                         {renderCard(item)}
