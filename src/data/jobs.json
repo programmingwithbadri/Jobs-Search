@@ -1,21 +1,20 @@
 {
-    "company": "Pied Piper",
     "url": "http://piedpiper.com/",
     "remoteFriendly": true,
     "market": "SaaS",
     "size": "10-50",
     "results": [
         {
+            "id": 1,
             "position": "Software Engineer",
+            "company": "Pied Piper",
             "title": "Backend Developer",
             "description": "You will help us build API for our compression infrastructure.",
             "url": "http://piedpiper.com/jobs/backend-developer",
             "type": "full-time",
-            "posted": "20-01-2015",
-            "location": [
-                -121,
-                36
-            ],
+            "posted": "20-03-2021",
+            "longitude": -120,
+            "latitude": 36,
             "skills": [
                 "Python",
                 "Javascript",
@@ -37,16 +36,16 @@
             "apply": "http://piedpiper.com/jobs/backend-developer/apply"
         },
         {
+            "id": 2,
             "position": "Software Engineer",
+            "company": "Joyful moments",
             "title": "Frontend Developer",
             "description": "You will help us build dashboard for our compression infrastructure.",
             "url": "http://piedpiper.com/jobs/frontend-developer",
             "type": "full-time",
-            "posted": "20-01-2015",
-            "location": [
-                -120,
-                36
-            ],
+            "posted": "10-04-2021",
+            "longitude": -118,
+            "latitude": 36,
             "skills": [
                 "Javascript",
                 "Angular.js",
@@ -68,16 +67,16 @@
             "apply": "http://piedpiper.com/jobs/frontend-developer/apply"
         },
         {
+            "id": 3,
             "position": "UI/UX Designer",
+            "company": "UX Enigma",
             "title": "UX Designer",
             "description": "You will help us design dashboard for our compression infrastructure.",
             "url": "http://piedpiper.com/jobs/ux-designer",
             "type": "full-time",
-            "posted": "20-01-2015",
-            "location": [
-                -119,
-                36
-            ],
+            "posted": "02-04-2021",
+            "longitude": -110,
+            "latitude": 36,
             "skills": [
                 "HTML",
                 "CSS",
