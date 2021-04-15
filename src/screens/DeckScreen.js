@@ -1,9 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Text, View, StyleSheet, Platform } from 'react-native'
 import Swipe from '../components/Swipe';
 import MapView from 'react-native-maps'
 import { Button, Card } from 'react-native-elements';
+import { likeJob } from '../actions/jobActions';
 
 const renderCard = (job) => {
     const initialRegion = {
@@ -54,11 +55,13 @@ const renderNoMoreCards = (cb) => {
 
 const DeckScreen = ({ navigation }) => {
     const { jobs: { results } } = useSelector(state => state.jobs);
+    const dispatch = useDispatch();
     return (
         <View style={{ marginTop: 10 }}>
             <Swipe
                 data={results}
                 renderCard={renderCard}
+                onSwipeRight={(job) => dispatch(likeJob(job))}
                 renderNoMoreCards={() => renderNoMoreCards(() => {
                     navigation.navigate('Maps')
                 })}
