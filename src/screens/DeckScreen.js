@@ -54,7 +54,13 @@ const renderNoMoreCards = (cb) => {
 }
 
 const DeckScreen = ({ navigation }) => {
-    const { jobs: { results } } = useSelector(state => state.jobs);
+    const { jobs } = useSelector(state => state.jobs);
+    if (!jobs) {
+        return renderNoMoreCards(() => {
+            navigation.navigate('Map')
+        })
+    }
+    const { results } = jobs;
     const dispatch = useDispatch();
     return (
         <View style={{ marginTop: 10 }}>
@@ -63,7 +69,7 @@ const DeckScreen = ({ navigation }) => {
                 renderCard={renderCard}
                 onSwipeRight={(job) => dispatch(likeJob(job))}
                 renderNoMoreCards={() => renderNoMoreCards(() => {
-                    navigation.navigate('Maps')
+                    navigation.navigate('Map')
                 })}
             />
         </View>
