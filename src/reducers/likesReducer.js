@@ -1,4 +1,4 @@
-import { LIKE_JOB } from '../types';
+import { LIKE_JOB, CLEAR_LIKED_JOBS } from '../types';
 
 export default function (state = [], action) {
     switch (action.type) {
@@ -16,6 +16,8 @@ export default function (state = [], action) {
                 return { ...state, likedJobs: [action.payload] }
             }
         }
+        case CLEAR_LIKED_JOBS:
+            return { ...state, likedJobs: [] }
         default:
             return state;
     }

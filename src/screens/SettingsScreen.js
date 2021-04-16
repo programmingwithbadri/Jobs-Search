@@ -1,10 +1,18 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { useDispatch } from 'react-redux'
+import { View } from 'react-native'
+import { Button } from 'react-native-elements'
+import { clearLikedJobs } from '../actions'
 
 const SettingsScreen = () => {
+    const dispatch = useDispatch();
     return (
         <View>
-            <Text> Settings Screen boilerplate </Text>
+            <Button
+                title="Reset Liked Jobs"
+                icon={{ name: 'delete-forever' }}
+                onPress={() => dispatch(clearLikedJobs())}
+            />
         </View>
     )
 }

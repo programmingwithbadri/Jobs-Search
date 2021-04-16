@@ -14,6 +14,7 @@ const renderLikedJobs = (likedJobs) => {
         };
         return (
             <Card key={job.id}>
+                <Card.Title>{job.title}</Card.Title>
                 <View style={{ height: 200 }}>
                     <MapView
                         scrollEnabled={false}
@@ -38,12 +39,15 @@ const renderLikedJobs = (likedJobs) => {
 }
 
 const ReviewScreen = () => {
-    const likedJobs = useSelector(state => state.likedJobs)
-    console.log(likedJobs)
+    const { likedJobs } = useSelector(state => state.likedJobs);
     return (
-        <ScrollView>
-            {renderLikedJobs(likedJobs)}
-        </ScrollView>
+        likedJobs
+            ? <ScrollView>
+                {renderLikedJobs(likedJobs)}
+            </ScrollView>
+            : <Card>
+                <Card.Title>No Jobs to Review</Card.Title>
+            </Card>
     )
 }
 
@@ -51,7 +55,8 @@ const styles = StyleSheet.create({
     detailWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginBottom: 10
+        marginBottom: 10,
+        marginTop: 10
     }
 })
 
