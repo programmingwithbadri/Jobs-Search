@@ -1,13 +1,27 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Text, View, ScrollView, StyleSheet, Linking } from 'react-native'
+import { Text, View, ScrollView, StyleSheet, Linking, Platform } from 'react-native'
 import { Button, Card } from 'react-native-elements';
+import MapView from 'react-native-maps'
 
 const renderLikedJobs = (likedJobs) => {
     return likedJobs.map(job => {
+        const initialRegion = {
+            longitude: job.longitude,
+            latitude: job.latitude,
+            longitudeDelta: 0.02,
+            latitudeDelta: 0.045
+        };
         return (
             <Card key={job.id}>
                 <View style={{ height: 200 }}>
+                    <MapView
+                        scrollEnabled={false}
+                        style={{ flex: 1 }}
+                        cacheEnabled={Platform.OS === 'android'}
+                        initialRegion={initialRegion}
+                    />
+                    <Card.Divider />
                     <View style={styles.detailWrapper}>
                         <Text style={{ fontStyle: 'italic' }}>{job.company}</Text>
                         <Text>{job.posted}</Text>
