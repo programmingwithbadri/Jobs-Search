@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -24,10 +24,36 @@ const InitialTabScreen = () => (
 );
 
 const MainTabScreen = () => (
-    <MainTab.Navigator>
-        <MainTab.Screen name="Map" component={MapScreen} />
-        <MainTab.Screen name="Deck" component={DeckScreen} />
-        <MainTab.Screen name="Reviews" component={ReviewStackScreen} />
+    <MainTab.Navigator tabBarOptions={{ showIcon: true }}>
+        <MainTab.Screen
+            name="Map"
+            component={MapScreen}
+            options={{
+                tabBarIcon: ({ tintColor }) => (
+                    <Icon name="my-location" size={24} color={tintColor} />
+                ),
+            }}
+        />
+        <MainTab.Screen
+
+            name="Deck"
+            component={DeckScreen}
+            options={{
+                title: "Jobs",
+                tabBarIcon: ({ tintColor }) => (
+                    <Icon name="description" size={24} color={tintColor} />
+                ),
+            }}
+        />
+        <MainTab.Screen
+            name="Reviews"
+            component={ReviewStackScreen}
+            options={{
+                tabBarIcon: ({ tintColor }) => (
+                    <Icon name="favorite" size={24} color={tintColor} />
+                ),
+            }}
+        />
     </MainTab.Navigator>
 );
 
