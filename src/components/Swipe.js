@@ -32,9 +32,10 @@ const Swipe = ({ onSwipeLeft, onSwipeRight, data, renderCard, renderNoMoreCards 
     })
 
     useEffect(() => {
+        setIndex(0);
         UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
         LayoutAnimation.spring();
-    }, []);
+    }, [data]); // it won't re-render now because we have static data
 
     const forceSwipe = (direction) => {
         const x = direction === 'right' ? SCREEN_WIDTH : -SCREEN_WIDTH;
