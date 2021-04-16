@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Text, View, ScrollView, StyleSheet } from 'react-native'
-import { Card } from 'react-native-elements';
+import { Text, View, ScrollView, StyleSheet, Linking } from 'react-native'
+import { Button, Card } from 'react-native-elements';
 
 const renderLikedJobs = (likedJobs) => {
     return likedJobs.map(job => {
@@ -12,6 +12,11 @@ const renderLikedJobs = (likedJobs) => {
                         <Text style={{ fontStyle: 'italic' }}>{job.company}</Text>
                         <Text>{job.posted}</Text>
                     </View>
+                    <Button
+                        title="Apply Now!"
+                        buttonStyle={{ color: '#03A9F4' }}
+                        onPress={() => Linking.openURL(job.apply)}
+                    />
                 </View>
             </Card>
         )
